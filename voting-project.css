@@ -1,0 +1,29 @@
+h1 {
+  text-align: center;
+  font-family: "Georgia";
+  text-transform: uppercase;
+  text-decoration: underline;
+  letter-spacing: 4px;
+  font-size: 60px;
+}
+
+body {
+  background-color: lightblue;
+}
+h2 {
+  text-align: center;
+  font-family: sans-serif;
+}
+
+#image-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+#image-container img {
+  height: 250px;
+}
+
+#image-container img:hover {
+  opacity: 0.3;
+}
