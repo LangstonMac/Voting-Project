@@ -1,11 +1,9 @@
-var imageTallies = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
-
 var ImageOption = function(source, name){
   this.source = source;
   this.label = name;
-  this.numberOfVotes = 0;
+  this.y = 0;
   this.voteCounter = function() {
-    this.numberOfVotes = this.numberOfVotes + 1;
+    this.y = this.y + 1;
   }
 }
 
@@ -27,11 +25,11 @@ images.push(new ImageOption("wine_glass.jpg", "Wine Glass"))
 
 
 function addImage(imageObject) {
-    var container = document.getElementById("image-container");
-    var image = document.createElement("img");
-    image.src = "images/" + imageObject.source;
-    image.addEventListener("click",recordClick);
-    container.appendChild(image);
+  var container = document.getElementById("image-container");
+  var image = document.createElement("img");
+  image.src = "images/" + imageObject.source;
+  image.addEventListener("click",recordClick);
+  container.appendChild(image);
 }
 
 function showImages() {
@@ -39,34 +37,55 @@ function showImages() {
   addImage(images[index]);
   var indexTwo = Math.floor(Math.random() * 14)
   while(indexTwo == index) {
-      indexTwo = Math.floor(Math.random() * 14);
+    indexTwo = Math.floor(Math.random() * 14);
   }
   addImage(images[indexTwo]);
   var indexThree = Math.floor(Math.random() * 14)
   while(indexThree == indexTwo || indexThree == index){
-      indexThree = Math.floor(Math.random() * 14);
+    indexThree = Math.floor(Math.random() * 14);
   }
   addImage(images[indexThree]);
 }
 
+var clickAmount = 0;
 
 function recordClick(event) {
-  var imageSource = event.target.src
-  var fullFileName = imageSource.split("images/")[1]
+  var imageSource = event.target.src;
+  var fullFileName = imageSource.split("images/")[1];
   var index = 0;
   var imageNodes = document.getElementsByTagName("img")[0];
   var imageNodes2 = document.getElementsByTagName("img")[1];
   var imageNodes3 = document.getElementsByTagName("img")[2];
   var sectionNode = document.getElementById("image-container")
-    while (fullFileName !== images[index].source){
-      index++
-    };
-    images[index].voteCounter();
-    console.log("Number of Votes for " + imageSource.split("images/")[1] + " so far = " + images[index].numberOfVotes)
-    sectionNode.removeChild(imageNodes);
-    sectionNode.removeChild(imageNodes2);
-    sectionNode.removeChild(imageNodes3);
+  while (fullFileName !== images[index].source){
+    index++
+  };
+  images[index].voteCounter();
+  clickAmount+=1;
+  console.log("Number of Votes for " + imageSource.split("images/")[1] + " so far = " + images[index].y)
+  sectionNode.removeChild(imageNodes);
+  sectionNode.removeChild(imageNodes2);
+  sectionNode.removeChild(imageNodes3);
+  //showImages();
+  if (clickAmount < 15) {
     showImages();
-   }
+  } else {
+    showChart.render();
+  }
+}
+
+  var showChart = new CanvasJS.Chart("chartContainer", {
+        animationEnabled: true,
+        theme: "theme3",
+        title:{
+          text: "Voting Results Pie Chart"
+        },
+        data: [
+          {
+           type: "pie",
+           dataPoints: images
+         }
+         ]
+       });
 
 window.addEventListener("load", showImages)
