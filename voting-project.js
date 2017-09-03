@@ -58,9 +58,9 @@ function recordClick(event) {
   var imageNodes2 = document.getElementsByTagName("img")[1];
   var imageNodes3 = document.getElementsByTagName("img")[2];
   var sectionNode = document.getElementById("image-container")
-      do{
+    while (fullFileName !== images[index].source){
       index++
-    } while (fullFileName !== images[index].source);
+    };
     images[index].voteCounter();
     console.log("Number of Votes for " + imageSource.split("images/")[1] + " so far = " + images[index].numberOfVotes)
     sectionNode.removeChild(imageNodes);
