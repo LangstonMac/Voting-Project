@@ -1,20 +1,26 @@
 h1 {
-  text-align: center;
+  text-align:left;
   font-family: "Georgia";
   text-transform: uppercase;
   text-decoration: underline;
   letter-spacing: 4px;
   font-size: 60px;
+  color: #B7C1DC;
 }
 
 body {
-  background-color: lightblue;
+  background: linear-gradient(#0A1737, #2C4073, #566DAB);
+  height: 100vh;
 }
 h2 {
-  text-align: center;
+  text-align:left;
   font-family: sans-serif;
+  color: #B7C1DC;
 }
 
+img {
+  border-radius: 20px;
+}
 #image-container {
   display: flex;
   justify-content: space-around;
