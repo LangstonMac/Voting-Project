@@ -2,12 +2,14 @@ var ImageOption = function(source, name){
   this.source = source;
   this.label = name;
   this.y = 0;
-  this.voteCounter = function() {
-    this.y = this.y + 1;
-  }
 }
 
-images = []
+
+if (localStorage.getItem("ImageObjects") != null) {
+  var images = JSON.parse(localStorage.getItem("ImageObjects"));
+}
+else {
+var  images = [];
 images.push(new ImageOption("banana.jpg", "Banana"))
 images.push(new ImageOption("boots.jpg", "Boots"))
 images.push(new ImageOption("chair.jpg", "Chair"))
@@ -22,7 +24,7 @@ images.push(new ImageOption("unicorn.jpg", "Unicorn"))
 images.push(new ImageOption("usb.jpg", "USB"))
 images.push(new ImageOption("water_can.jpg", "Water Can"))
 images.push(new ImageOption("wine_glass.jpg", "Wine Glass"))
-
+}
 
 function addImage(imageObject) {
   var container = document.getElementById("image-container");
@@ -60,8 +62,9 @@ function recordClick(event) {
   while (fullFileName !== images[index].source){
     index++
   };
-  images[index].voteCounter();
+  images[index].y++;
   clickAmount+=1;
+  localStorage.setItem("ImageObjects", JSON.stringify(images));
   console.log("Number of Votes for " + imageSource.split("images/")[1] + " so far = " + images[index].y)
   sectionNode.removeChild(imageNodes);
   sectionNode.removeChild(imageNodes2);
