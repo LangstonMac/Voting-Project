@@ -66,26 +66,46 @@ function recordClick(event) {
   sectionNode.removeChild(imageNodes);
   sectionNode.removeChild(imageNodes2);
   sectionNode.removeChild(imageNodes3);
-  //showImages();
+  console.log(clickAmount)
   if (clickAmount < 15) {
+    console.log(pBar)
+    pBar.setAttribute("value", pBar.value + 1)
     showImages();
   } else {
+    pBar.removeAttribute("value", pBar.value = 0)
     showChart.render();
+    showChart.canvas.style.display = "block";
+    document.getElementById("buttonId").style.display = 'block'
+    document.getElementById("p").style.display = "none"
   }
 }
 
-  var showChart = new CanvasJS.Chart("chartContainer", {
-        animationEnabled: true,
-        theme: "theme3",
-        title:{
-          text: "Voting Results Pie Chart"
-        },
-        data: [
-          {
-           type: "pie",
-           dataPoints: images
-         }
-         ]
-       });
+function voteAgain(){
+  console.log(showChart)
+  showChart.canvas.style.display = "none";
+  document.getElementById("buttonId").style.display = 'none'
+  document.getElementById("p").style.display = 'block'
+  clickAmount = 0;
+  showImages();
+  recordClick(event);
+}
+
+var pBar = document.getElementById("p");
+document.getElementById("buttonId").style.display = 'none'
+document.getElementById("p").style.display = 'block'
+
+var showChart = new CanvasJS.Chart("chartContainer", {
+  animationEnabled: true,
+  theme: "theme3",
+  title:{
+    text: "Voting Results Chart"
+  },
+  data: [
+    {
+      type: "column",
+      dataPoints: images
+    }
+  ]
+});
 
 window.addEventListener("load", showImages)

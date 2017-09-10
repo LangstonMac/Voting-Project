@@ -1,5 +1,6 @@
 h1 {
   text-align:left;
+  margin-top: auto;
   font-family: "Georgia";
   text-transform: uppercase;
   text-decoration: underline;
@@ -9,17 +10,25 @@ h1 {
 }
 
 body {
-  background: linear-gradient(#0A1737, #2C4073, #566DAB);
+  background: linear-gradient(#A10ABF, #741DB0, #4916AF);
   height: 100vh;
 }
+
 h2 {
   text-align:left;
   font-family: sans-serif;
   color: #B7C1DC;
 }
 
+progress{
+  background-color: blue;
+  border: 25px;
+  display:inline-block;
+  width: 100%;
+}
 img {
-  border-radius: 20px;
+  border-radius: 25px;
+  border: 10px;
 }
 #image-container {
   display: flex;
