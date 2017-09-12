@@ -1,3 +1,5 @@
+//HEY MARK CHECK OUT MY CSS PAGE!
+
 var ImageOption = function(source, name){
   this.source = source;
   this.label = name;
@@ -110,5 +112,7 @@ var showChart = new CanvasJS.Chart("chartContainer", {
     }
   ]
 });
+
+//HEY MARK CHECK OUT MY CSS PAGE!
 
 window.addEventListener("load", showImages)
