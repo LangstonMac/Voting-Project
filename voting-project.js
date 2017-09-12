@@ -1,12 +1,14 @@
 //HEY MARK CHECK OUT MY CSS PAGE!
 
+
+//constructor below
 var ImageOption = function(source, name){
   this.source = source;
   this.label = name;
   this.y = 0;
 }
 
-
+//if else statement holding vote information and dictating what info the page loads
 if (localStorage.getItem("ImageObjects") != null) {
   var images = JSON.parse(localStorage.getItem("ImageObjects"));
 }
@@ -28,6 +30,7 @@ images.push(new ImageOption("water_can.jpg", "Water Can"))
 images.push(new ImageOption("wine_glass.jpg", "Wine Glass"))
 }
 
+//how it adds the image to the imate container
 function addImage(imageObject) {
   var container = document.getElementById("image-container");
   var image = document.createElement("img");
@@ -36,6 +39,7 @@ function addImage(imageObject) {
   container.appendChild(image);
 }
 
+//how it randomizes the images brought to the page
 function showImages() {
   var index = Math.floor(Math.random() * 14)
   addImage(images[index]);
@@ -53,6 +57,7 @@ function showImages() {
 
 var clickAmount = 0;
 
+//click event functionality & progress bar value count
 function recordClick(event) {
   var imageSource = event.target.src;
   var fullFileName = imageSource.split("images/")[1];
@@ -84,7 +89,7 @@ function recordClick(event) {
     document.getElementById("p").style.display = "none"
   }
 }
-
+//when and how the vote again button appears
 function voteAgain(){
   console.log(showChart)
   showChart.canvas.style.display = "none";
@@ -99,6 +104,7 @@ var pBar = document.getElementById("p");
 document.getElementById("buttonId").style.display = 'none'
 document.getElementById("p").style.display = 'block'
 
+//how the chart is shown
 var showChart = new CanvasJS.Chart("chartContainer", {
   animationEnabled: true,
   theme: "theme3",
